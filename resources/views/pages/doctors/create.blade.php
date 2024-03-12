@@ -30,7 +30,7 @@
 
 
                 <div class="card">
-                    <form action="{{ route('doctors.store') }}" method="POST">
+                    <form action="{{ route('doctors.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="card-header">
                             <h4>Input Text</h4>
@@ -99,6 +99,19 @@
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label class="font-weight-bold">Photo</label>
+                                <input type="file" 
+                                class="form-control @error('photo') is-invalid 
+                                @enderror" name="photo">
+                            
+                                <!-- error message untuk title -->
+                                @error('photo')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
                                 @enderror
                             </div>
                         </div>

@@ -58,16 +58,18 @@
                                     <table class="table-striped table">
                                         <tr>
 
+                                            
                                             <th>Name</th>
                                             <th>Email</th>
                                             <th>Phone</th>
                                             <th>Specialist</th>
-                                            <th>Created At</th>
+                                            <th>Photo</th>
                                             <th>Action</th>
                                         </tr>
                                         @foreach ($doctors as $doctor)
                                             <tr>
 
+                                                
                                                 <td>{{ $doctor->doctor_name }}
                                                 </td>
                                                 <td>
@@ -79,7 +81,9 @@
                                                 <td>
                                                     {{ $doctor->doctor_specialist }}
                                                 </td>
-                                                <td>{{ $doctor->created_at }}</td>
+                                                <td class="text-center">
+                                                    <img src="{{ asset('/storage/doctors/'.$doctor->photo) }}" class="rounded" style="width: 100px">
+                                                </td>
                                                 <td>
                                                     <div class="d-flex justify-content-center">
                                                         <a href='{{ route('doctors.edit', $doctor->id) }}'

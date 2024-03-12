@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Doctor;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class DoctorController extends Controller
 {
@@ -34,7 +35,12 @@ class DoctorController extends Controller
             'doctor_phone' => 'required',
             'doctor_email' => 'required|email',
             'sip' => 'required',
+            'photo' => 'required|image|mimes:jpeg,jpg,png|max:2048',
+
         ]);
+
+        $photo = $request->file('photo');
+        $photo->storeAs('public/doctors', $photo->hashName());
 
         DB::table('doctors')->insert([
             'doctor_name' => $request->doctor_name,
@@ -42,6 +48,7 @@ class DoctorController extends Controller
             'doctor_phone' => $request->doctor_phone,
             'doctor_email' => $request->doctor_email,
             'sip' => $request->sip,
+            'photo'     => $photo->hashName(),
         ]);
 
         return redirect()->route('doctors.index')->with('success', 'Doctor created successfully');
