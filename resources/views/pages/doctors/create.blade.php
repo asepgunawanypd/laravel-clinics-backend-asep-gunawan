@@ -102,6 +102,32 @@
                                 @enderror
                             </div>
                             <div class="form-group">
+                                <label>Nomor NIK</label>
+                                <input type="text"
+                                    class="form-control @error('nik')
+                                is-invalid
+                            @enderror"
+                                    name="nik">
+                                @error('nik')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label>Id IHS</label>
+                                <input type="text"
+                                    class="form-control @error('id_ihs')
+                                is-invalid
+                            @enderror"
+                                    name="id_ihs">
+                                @error('id_ihs')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
                                 <label class="font-weight-bold">Photo</label>
                                 <input type="file" 
                                 class="form-control @error('photo') is-invalid 

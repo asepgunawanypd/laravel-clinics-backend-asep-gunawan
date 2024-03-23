@@ -30,7 +30,7 @@
 
 
                 <div class="card">
-                    <form action="{{ route('doctors.update', $doctor) }}" method="POST">
+                    <form action="{{ route('doctor-schedules.update', $doctor) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="card-header">

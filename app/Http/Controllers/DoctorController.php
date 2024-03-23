@@ -35,6 +35,8 @@ class DoctorController extends Controller
             'doctor_phone' => 'required',
             'doctor_email' => 'required|email',
             'sip' => 'required',
+            'nik' => 'required',
+            'id_ihs' => 'required',
             'photo' => 'required|image|mimes:jpeg,jpg,png|max:2048',
 
         ]);
@@ -48,7 +50,10 @@ class DoctorController extends Controller
             'doctor_phone' => $request->doctor_phone,
             'doctor_email' => $request->doctor_email,
             'sip' => $request->sip,
+            'nik' => $request->nik,
+            'id_ihs' => $request->id_ihs,
             'photo'     => $photo->hashName(),
+            'created_at' => now(),
         ]);
 
         return redirect()->route('doctors.index')->with('success', 'Doctor created successfully');
@@ -79,6 +84,8 @@ class DoctorController extends Controller
             'doctor_phone' => 'required',
             'doctor_email' => 'required|email',
             'sip' => 'required',
+            'nik' => 'required',
+            'id_ihs' => 'required',
         ]);
 
         DB::table('doctors')->where('id', $id)->update([
@@ -87,6 +94,9 @@ class DoctorController extends Controller
             'doctor_phone' => $request->doctor_phone,
             'doctor_email' => $request->doctor_email,
             'sip' => $request->sip,
+            'nik' => $request->nik,
+            'id_ihs' => $request->id_ihs,
+            'updated_at' => now(),
         ]);
 
         return redirect()->route('doctors.index')->with('success', 'Doctor updated successfully');

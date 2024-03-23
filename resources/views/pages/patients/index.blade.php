@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Doctors')
+@section('title', 'Patients')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -11,14 +11,14 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Doctor</h1>
-                <div class="section-header-button">
-                    <a href="{{ route('doctors.create') }}" class="btn btn-primary">Add New</a>
-                </div>
+                <h1>Patients</h1>
+                {{-- <div class="section-header-button">
+                    <a href="{{ route('patients.create') }}" class="btn btn-primary">Add New</a>
+                </div> --}}
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="#">Doctor</a></div>
-                    <div class="breadcrumb-item">All Doctor</div>
+                    <div class="breadcrumb-item"><a href="#">Patients</a></div>
+                    <div class="breadcrumb-item">All Patients</div>
                 </div>
             </div>
             <div class="section-body">
@@ -42,7 +42,7 @@
                             <div class="card-body">
                                 
                                 <div class="float-right">
-                                    <form method="GET" action="{{ route('doctors.index') }}">
+                                    <form method="GET" action="{{ route('patients.index') }}">
                                         <div class="input-group">
                                             <input type="text" class="form-control" placeholder="Search" name="name">
                                             <div class="input-group-append">
@@ -58,51 +58,32 @@
                                     <table class="table-striped table">
                                         <tr>
 
-                                            
+                                            <th>NIK</th>
                                             <th>Name</th>
-                                            <th>Phone</th>
-                                            <th>Specialist</th>
+                                            <th>Birth Place</th>
+                                            <th>Birth Date</th>
                                             <th>Address</th>
-                                            <th>Photo</th>
-                                            <th>Action</th>
+                                            
                                         </tr>
-                                        @foreach ($doctors as $doctor)
+                                        @foreach ($patients as $patient)
                                             <tr>
 
+                                                <td>{{ $patient->nik }}
+                                                </td>
+                                                <td>
+                                                    {{ $patient->name }}
+                                                </td>
+                                                <td>
+                                                    {{ $patient->birth_place }}
+                                                </td>
+                                                <td>
+                                                    {{ $patient->birth_date }}
+                                                </td>
+                                                <td>
+                                                    {{ $patient->address_line }}
+                                                </td>
                                                 
-                                                <td>{{ $doctor->doctor_name }}
-                                                </td>
-                                                <td>
-                                                    {{ $doctor->doctor_phone }}
-                                                </td>
-                                                <td>
-                                                    {{ $doctor->doctor_specialist }}
-                                                </td>
-                                                <td>
-                                                    {{ $doctor->address }}
-                                                </td>
-                                                <td class="text-center">
-                                                    <img src="{{ asset('/storage/doctors/'.$doctor->photo) }}" class="img-thumbnail" style="width: 100px">
-                                                </td>
-                                                <td>
-                                                    <div class="d-flex justify-content-center">
-                                                        <a href='{{ route('doctors.edit', $doctor->id) }}'
-                                                            class="btn btn-sm btn-warning btn-icon">
-                                                            <i class="fas fa-edit"></i>
-                                                            
-                                                        </a>
-
-                                                        <form action="{{ route('doctors.destroy', $doctor->id) }}" method="POST"
-                                                            class="ml-2">
-                                                            <input type="hidden" name="_method" value="DELETE" />
-                                                            <input type="hidden" name="_token"
-                                                                value="{{ csrf_token() }}" />
-                                                            <button class="btn btn-sm btn-danger btn-icon confirm-delete">
-                                                                <i class="fas fa-trash"></i>
-                                                            </button>
-                                                        </form>
-                                                    </div>
-                                                </td>
+                                                
                                             </tr>
                                         @endforeach
 
@@ -110,7 +91,7 @@
                                     </table>
                                 </div>
                                 <div class="float-right">
-                                    {{ $doctors->withQueryString()->links() }}
+                                    {{ $patients->withQueryString()->links() }}
                                 </div>
                             </div>
                         </div>

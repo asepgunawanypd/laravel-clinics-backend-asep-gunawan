@@ -79,7 +79,7 @@
                                                 <td>
                                                     <div class="d-flex justify-content-center">
                                                         <a href='{{ route('users.edit', $user->id) }}'
-                                                            class="btn btn-sm btn-info btn-icon">
+                                                            class="btn btn-sm btn-warning btn-icon">
                                                             <i class="fas fa-edit"></i>
                                                             Edit
                                                         </a>
